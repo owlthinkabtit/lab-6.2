@@ -1,3 +1,5 @@
+import { DataError, NetworkError } from "./errors.js";
+
 export const fetchProductCatalog = (): Promise<{ id: number; name: string; price: number }[]> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -7,7 +9,7 @@ export const fetchProductCatalog = (): Promise<{ id: number; name: string; price
           { id: 2, name: "Headphones", price: 200},
         ]);
       } else {
-        reject("Failed to fetch product catalog");
+        reject(new NetworkError("Failed..."));
       }
     }, 1000);
   });
@@ -37,7 +39,7 @@ export const fetchSalesReport = () : Promise<{productId: number, totalSales: num
           {productId: 2, totalSales: 8, unitsSold: 8, averagePrice: 4},
         ]);
       } else {
-        reject("failed to fetch sales report");
+        reject(new DataError("Failed..."));
       }
     }, 1000);
   });
